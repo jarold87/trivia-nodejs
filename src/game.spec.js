@@ -1,16 +1,16 @@
 const Should = require('should');
 const Game = require('./game.js');
 
-describe("The test environment", function () {
-  it("should pass", function () {
-    (true).should.equal(true);
+describe("The test environment", () => {
+  test("should pass", () => {
+    expect(true).toEqual(true);
   });
 
-  it("should access game", function () {
-    Should(Game).not.equal(undefined);
+  test("should access game", () => {
+    expect(Game).not.toEqual(undefined);
   });
 });
 
-describe("Your specs...", function () {
-  // it ...
+describe("Your specs...", () => {
+
 });
