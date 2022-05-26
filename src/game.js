@@ -13,7 +13,7 @@ var Game = function () {
   var isGettingOutOfPenaltyBox = false;
 
   var didPlayerWin = function () {
-    return !(purses[currentPlayer] == 6)
+    return purses[currentPlayer] === 6;
   };
 
   var currentCategory = function () {
@@ -125,6 +125,9 @@ var Game = function () {
             purses[currentPlayer] + " Gold Coins.");
 
         var winner = didPlayerWin();
+        if (winner) {
+          console.log(players[currentPlayer] + " won the game");
+        }
         currentPlayer += 1;
         if (currentPlayer == players.length)
           currentPlayer = 0;
@@ -134,7 +137,7 @@ var Game = function () {
         currentPlayer += 1;
         if (currentPlayer == players.length)
           currentPlayer = 0;
-        return true;
+        return false;
       }
 
 
@@ -147,12 +150,16 @@ var Game = function () {
           purses[currentPlayer] + " Gold Coins.");
 
       var winner = didPlayerWin();
+      if (winner) {
+        console.log(players[currentPlayer] + " won the game");
+        return winner;
+      }
 
       currentPlayer += 1;
       if (currentPlayer == players.length)
         currentPlayer = 0;
 
-      return winner;
+      return false;
     }
   };
 
@@ -164,28 +171,12 @@ var Game = function () {
     currentPlayer += 1;
     if (currentPlayer == players.length)
       currentPlayer = 0;
-    return true;
+    return false;
   };
-};
 
-var notAWinner = false;
-
-var game = new Game();
-
-game.add('Chet');
-game.add('Pat');
-game.add('Sue');
-
-do {
-
-  game.roll(Math.floor(Math.random() * 6) + 1);
-
-  if (Math.floor(Math.random() * 10) == 7) {
-    notAWinner = game.wrongAnswer();
-  } else {
-    notAWinner = game.wasCorrectlyAnswered();
+  this.getWinnerPlayer = function () {
+    return players[currentPlayer];
   }
-
-} while (notAWinner);
+};
 
 module.exports = Game;

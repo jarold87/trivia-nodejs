@@ -12,5 +12,20 @@ describe("The test environment", () => {
 });
 
 describe("Your specs...", () => {
-
+  test("should have a winner", () => {
+    var haveAWinner = false;
+    var game = new Game();
+    
+    game.add('Chet');
+    game.add('Pat');
+    game.add('Sue');
+    
+    do {
+      game.roll(1);
+      haveAWinner = game.wasCorrectlyAnswered();
+    } while (haveAWinner === false);
+    
+    expect(haveAWinner).toEqual(true);
+    expect(game.getWinnerPlayer()).toEqual('Chet');
+  })
 });
