@@ -5,7 +5,7 @@
   "main": "game.js",
   "scripts": {
     "game": "node src/runGame.js",
-    "jest": "jest src/**/*.spec.js --runInBand --watchAll"
+    "test": "jest src/**/*.spec.js --runInBand --watchAll"
   },
   "author": "",
   "license": "GPL v3",

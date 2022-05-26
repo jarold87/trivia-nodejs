@@ -12,6 +12,8 @@ var Game = function () {
   var currentPlayer = 0;
   var isGettingOutOfPenaltyBox = false;
 
+  var hasWinner = false;
+
   var didPlayerWin = function () {
     return purses[currentPlayer] === 6;
   };
@@ -126,19 +128,13 @@ var Game = function () {
 
         var winner = didPlayerWin();
         if (winner) {
+          hasWinner = true;
           console.log(players[currentPlayer] + " won the game");
+          return;
         }
-        currentPlayer += 1;
-        if (currentPlayer == players.length)
-          currentPlayer = 0;
-
-        return winner;
-      } else {
-        currentPlayer += 1;
-        if (currentPlayer == players.length)
-          currentPlayer = 0;
-        return false;
       }
+
+      this.setNextPlayer();
 
 
     } else {
@@ -151,15 +147,13 @@ var Game = function () {
 
       var winner = didPlayerWin();
       if (winner) {
+        hasWinner = true;
         console.log(players[currentPlayer] + " won the game");
-        return winner;
+        return;
       }
 
-      currentPlayer += 1;
-      if (currentPlayer == players.length)
-        currentPlayer = 0;
+      this.setNextPlayer();
 
-      return false;
     }
   };
 
@@ -171,11 +165,17 @@ var Game = function () {
     currentPlayer += 1;
     if (currentPlayer == players.length)
       currentPlayer = 0;
-    return false;
+
   };
 
-  this.getWinnerPlayer = function () {
-    return players[currentPlayer];
+  this.hasWinner = function () {
+    return hasWinner;
+  };
+
+  this.setNextPlayer = function() {
+    currentPlayer += 1;
+    if (currentPlayer == players.length)
+      currentPlayer = 0;
   }
 };
 

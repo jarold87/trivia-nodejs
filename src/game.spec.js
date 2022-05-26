@@ -13,7 +13,6 @@ describe("The test environment", () => {
 
 describe("Your specs...", () => {
   test("should have a winner", () => {
-    var haveAWinner = false;
     var game = new Game();
     
     game.add('Chet');
@@ -23,9 +22,8 @@ describe("Your specs...", () => {
     do {
       game.roll(1);
       haveAWinner = game.wasCorrectlyAnswered();
-    } while (haveAWinner === false);
+    } while (game.hasWinner() === false);
     
-    expect(haveAWinner).toEqual(true);
-    expect(game.getWinnerPlayer()).toEqual('Chet');
+    expect(game.hasWinner()).toEqual(true);
   })
 });

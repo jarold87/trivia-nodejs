@@ -1,7 +1,5 @@
 const Game = require('./game.js');
 
-var haveAWinner = false;
-
 var game = new Game();
 
 game.add('Chet');
@@ -18,4 +16,4 @@ do {
     haveAWinner = game.wasCorrectlyAnswered();
   }
 
-} while (haveAWinner === false);
+} while (game.hasWinner() === false);
